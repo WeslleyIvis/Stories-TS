@@ -49,6 +49,7 @@ export default class Slide {
     }
     pause() {
         this.pauseTimeout = new Timeout(() => {
+            this.timeout?.pause();
             this.paused = true;
         }, 300);
     }
@@ -56,8 +57,7 @@ export default class Slide {
         this.pauseTimeout?.clear();
         if (this.paused) {
             this.paused = false;
-            console.log(this.paused);
-            this.auto(this.timer);
+            this.timeout?.continue();
         }
     }
     addControls() {
